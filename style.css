@@ -19,17 +19,23 @@
   line-height: 1;
   background-color: #e0e6d6;
 }
-a.s{
+/*a.s{
+  font-size: 18px;
+  color: #E60073;
+  font-weight: lighter;
+  line-height: 1;
+  text-align: left;
+}*/
+a{
+  color: #3a4be6;
+}
+li a{
   font-size: 18px;
   color: #E60073;
   font-weight: lighter;
   line-height: 1;
   text-align: left;
 }
-a{
-  color: #3a4be6;
-}
-
 ul>li:hover{
 color: #2d79b3;
 margin-left: 4px;
