@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Приклад роботи з методами document та node</title>
+</head>
+<body>
+<h1>Приклад роботи з методами document та node</h1>
+<a href="index.html">Назад до головної сторінки</a>
+
+<ul id="myList"></ul>
+
+<p id="myParagraph">Параграф</p>
+
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+</svg>
+
+<button id="myButton">Натисни мене</button>
+
+<div id="myDiv" style="width:100px; height:100px; background-color:lightblue;"></div>
+<hr>
+<!-- Кнопки для виклику кожного методу окремо -->
+<button onclick="writeMessage()">Вивести текст за допомогою document.write</button>
+<button onclick="createAndAppendElement()">Створити і додати елемент за допомогою document.createElement</button>
+<button onclick="createAndAppendTextNode()">Додати текстовий вузол за допомогою document.createTextNode</button>
+<button onclick="appendItemsToList()">Додати елементи до списку за допомогою node.append</button>
+<button onclick="prependToHeading()">Додати елемент до заголовку за допомогою node.prepend</button>
+<button onclick="addAfterHeading()">Додати елемент після заголовка за допомогою node.after</button>
+<button onclick="replaceHeading()">Замінити заголовок за допомогою node.replaceWith</button>
+<button onclick="removeButton()">Видалити кнопку за допомогою node.remove</button>
+
+<script>
+  // document.write
+  function writeMessage() {
+    document.write("<p>Цей абзац виведено за допомогою document.write</p>");
+  }
+  // document.createElement(tag)
+  function createAndAppendElement() {
+    var newElement = document.createElement("p");
+    newElement.textContent = "Цей параграф був створений та доданий за допомогою document.createElement";
+    document.body.appendChild(newElement); //додає вузол в кінець списка дочірніх
+  }
+  // document.createTextNode(text)
+  function createAndAppendTextNode() {
+    var paragraph = document.getElementById("myParagraph");
+    var textNode = document.createTextNode(" Цей текстовий вузол був створений за допомогою document.createTextNode та доданий до параграфу");
+    paragraph.appendChild(textNode);
+  }
+  // node.append(...nodes or strings)
+  function appendItemsToList() {
+    var myList = document.getElementById("myList");
+    var item1 = document.createElement("li");
+    item1.textContent = "Пункт 1";
+    var item2 = document.createElement("li");
+    item2.textContent = "Пункт 2";
+    myList.append(item1, item2, "Пункт 3 текстовим рядком");
+  }
+  // node.prepend(...nodes or strings)
+  function prependToHeading() {
+    var heading = document.querySelector("h1");
+    var newParagraph = document.createElement("p");
+    newParagraph.textContent = "Цей абзац був доданий після заголовка";
+    heading.prepend(newParagraph);
+  }
+  // node.after(...nodes or strings)
+  function addAfterHeading() {
+    var heading = document.querySelector("h1");
+    var newParagraph2 = document.createElement("p");
+    newParagraph2.textContent = "Цей абзац додано після заголовка";
+    heading.after(newParagraph2);
+  }
+  // node.replaceWith(...nodes or strings)
+  function replaceHeading() {
+    var heading = document.querySelector("h1");
+    var newHeading = document.createElement("h2");
+    newHeading.textContent = "Цей новий заголовок замінив попередній";
+    heading.replaceWith(newHeading);
+  }
+  // node.remove()
+  function removeButton() {
+    var button = document.getElementById("myButton");
+    button.remove();
+  }
+</script>
+</body>
+</html>

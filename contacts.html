@@ -23,15 +23,101 @@
     </style>
   </head>
   <body>
+    Спочатку було яйце
 <a href="index.html">Назад до головної сторінки</a>
 <p><font color="#008080" size="5"><center>Наші контакти:</center></font></p>
 <h1 class="atent">Увага!</h1>
 <h3 id="p">Будьте чемними та тактовними, не приймаються дзвінки з номерів, які
 можуть виявитись спамом чи зловмисниками.
 </h3>
+<script>
+function Who() {
+    alert('Шевченко Ян Сергійович - менеджер №1 нашої компанії. 22 роки, не одружений. Прохання: жінкам не залицятись. До чоловіків ця заборона не відноситься :)');
+  }
+function Cn(){
+  let vik = prompt("Введіть свій вік цифрами");//Отримання інфи
+  //Перевірка числа
+  if(!isNaN(vik)){//Чи числове
+    number = parseFloat(vik);//Перетворення рядка в число
+    if(vik > 35){
+      alert("На жаль, менеджер Кристина не зможе прийняти виклик");
+    }
+    else if(vik < 16){
+      alert("Знайди інше місце для роваг, пустунчик");
+    }
+    else{
+      alert("Менеджер Горбаченко Кристина Ігорівна до ваших послуг :^)");
+    }
+  }
+  else{
+    alert("Невже ви не знаєте що таке цифри і вік?");
+  }
+}
+function Hm(){
+  let res = confirm("Ви справді хочете стати нашим менеджером?")
+if (res) {
+  alert("Телефонуйте +3804858738698");
+}
+else{
+  alert("Ну гаразд, буває");
+}
+}
+function Game(){
+   let str1 = prompt("Введіть перший рядок:");
+   let str2 = prompt("Введіть другий рядок:");
+   if (str1 && str2) { // Перевіряємо, чи користувач ввів обидва рядки
+       if (str1.length > str2.length) {
+           alert("Більший рядок: " + str1);
+       }
+       else if (str2.length > str1.length) {
+           alert("Більший рядок: " + str2);
+       }
+       else {
+           alert("Рядки рівні за значенням.");
+       }
+   }
+   else {
+       alert("Будь ласка, введіть обидва рядки.");
+   }
+}
+function BC() {
+  let col = '#' + Math.floor(Math.random()*16777215).toString(16);
+  document.body.style.backgroundColor = col;
+}
+let timer; // Зберігаємо ідентифікатор таймера
+function BC1() {
+    BC();
+    timer = setTimeout(BC2, 30000);
+}
+function BC2() {
+    // Відміняємо подальші зміни фону
+    clearTimeout(timer);
+    document.body.style.backgroundColor = "white";
+}
+function Nag() {
+  let nag = document.getElementById("p").textContent;
+  alert(nag + firstm.textContent + " не кохає жінок!");
+}
+function Sa() {
+  let text = document.body.firstChild;
+  alert(text.data);
+}
+</script>
 <div>
-<h3>Менеджер Ян: <i>+380960435689</i></h3>
+<h3 id="firstm">Менеджер Ян: <i>+380960435689</i></h3>
+<button onclick="Who()">Хто це?</button>
 </div>
-
+<div>
+<h3 id="secm">Менеджер Кристина:<i>+380589438945</i></h3>
+ <button onclick="Cn()">Хто це?</button>
+</div>
+<button onclick="Hm()">Хочу в менеджери!</button>
+<p>Забавка</p>
+<button onclick="Game()">Пограємось!</button>
+<button onclick="BC1()">Змінити фон!</button>
+<button onclick="Sa()">Що було спочатку?</button>
+<div>
+<button onclick="Nag()">Нагадування!</button>
+</div>
   </body>
 </html>
