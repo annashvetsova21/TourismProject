@@ -35,7 +35,28 @@
 <img src="https://th.bing.com/th/id/R.5db9015d478c920c474b63972683a7ea?rik=Cna6d4SHlHmvFA&riu=http%3a%2f%2fimages-on-off.com%2fimages%2f44%2fchtoposmotretvshotlandii5luchshixmest-7c448094.jpg&ehk=YdWJY%2b%2bE992Uw3WV1dUll%2fXS2sGFA6ksaDLZk5Bc75w%3d&risl=&pid=ImgRaw&r=0" height="566" width="848px">
 <img src="https://peopletravel.by/uploads/images/fotos/sights/estonia/episkopskiyzamokkuresaare_2.jpg" height="218px" width="390px">
 <p>Інформація про власника сайту:</p>
-<button onclick="Avt('Швецова', 'Анна')">Показати</button>
+<button id="button">Показати</button>
+<button id="ch">Яка країна найрідніша?</button>
+<script>
+    // Отримуємо кнопку за її id
+    var button = document.getElementById("button");
+    // Призначаємо функцію-обробник події через властивість onclick
+    button.onclick = function() {
+        Avt('Швецова', 'Анна');
+    };
+    function Avt(Sur, Name, Prof = "веб-розробник") {
+      alert("Прізвище: " + Sur + "\nІм'я: " + Name + "\nПосада: " + Prof);
+    }
+    function h() {
+        alert("Україна!");
+    }
+    function h1() {
+        alert("Ну і Канада)");
+    }
+    var but = document.getElementById("ch");
+    but.addEventListener("click", h);
+    but.addEventListener("click", h1);
+</script>
 <script src="help.js"></script>
   </body>
 </html>

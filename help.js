@@ -22,9 +22,7 @@ function Helper() {
         alert("Будь ласка, введіть ваше ім'я.");
     }
 }
-function Avt(Sur, Name, Prof = "веб-розробник") {
-  alert("Прізвище: " + Sur + "\nІм'я: " + Name + "\nПосада: " + Prof);
-}
+
 function SL() {
   if(confirm("Бажаєте перейти на сайт?")){
     location.href = "https://fortunatour.com.ua/ua/touristic-vocabulary";

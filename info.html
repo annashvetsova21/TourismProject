@@ -20,6 +20,10 @@
       color:  #008080;
       font-size: 19px;
     }
+    .highlighted {
+        background-color: red;
+        width: 160px;
+    }
     </style>
   </head>
   <body>
@@ -45,6 +49,31 @@
   <li>Єгипет</li>
   <li>Іспанія</li>
 </ol>
+<p>Найнебезпеніші країни в туристів:</p>
+<ol id="list">
+  <li>Південний Судан</li>
+  <li>Сомалі</li>
+  <li>Лівія</li>
+  <li>Ємен</li>
+  <li>Сирія</li>
+</ol>
+<script>
+// Отримуємо список елементів
+var list = document.getElementById("list");
+// Додаємо обробник подій до списку
+list.onclick = function(event) {
+    // Перевіряємо, чи клікнули по елементу списку
+    if (event.target.tagName === "LI") {
+        // Знімаємо підсвічування з усіх елементів
+        var items = list.getElementsByTagName("li");
+        for (var i = 0; i < items.length; i++) {
+            items[i].classList.remove("highlighted");
+        }
+        // Додаємо підсвічування до клікнутого елементу
+        event.target.classList.add("highlighted");
+    }
+};
+</script>
 <button onclick="N()">Найкращий + код</button>
 <p>Туристичний словник:</p>
 <dl>

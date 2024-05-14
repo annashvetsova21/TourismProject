@@ -5,8 +5,117 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Приклад роботи з методами document та node</title>
+  <style>
+    .menu-button {
+        padding: 10px 20px;
+        margin: 5px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .menu-button:hover {
+        background-color: #0056b3;
+    }
+    .menu-button2 {
+        padding: 10px 20px;
+        margin: 5px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .menu-button2:hover {
+        background-color: #0056b3;
+    }
+</style>
 </head>
 <body>
+  <div id="menu">
+      <button class="menu-button" data-action="action1">Дія 1</button>
+      <button class="menu-button" data-action="action2">Дія 2</button>
+      <button class="menu-button" data-action="action3">Дія 3</button>
+  </div>
+  <script>
+  // Функція для обробки кліків на кнопках меню
+function handleMenuClick(event) {
+  // Отримати data-action атрибут кнопки, на яку клікнули
+  const action = event.target.dataset.action;
+  // Виконати відповідну дію в залежності від значення data-action
+  switch (action) {
+      case "action1":
+          alert("Виконується дія 1");
+          break;
+      case "action2":
+          const name = prompt("Введіть своє ім'я:");
+          alert(`Привіт, ${name}! Виконується дія 2`);
+          break;
+      case "action3":
+          const number = parseInt(prompt("Введіть число:"));
+          if (!isNaN(number)) {
+              alert(`Квадрат числа ${number} дорівнює ${number * number}`);
+          } else {
+              alert("Ви ввели некоректне число!");
+          }
+          break;
+      default:
+          console.log("Невідома дія");
+  }
+}
+// Отримати всі кнопки меню
+const menuButtons = document.querySelectorAll('.menu-button');
+// Пройтися по кожній кнопці і додати обробник кліку
+menuButtons.forEach(button => {
+  button.addEventListener('click', handleMenuClick);
+});
+  </script>
+
+  <div id="menu2">
+      <button class="menu-button2" data-behavior="alert" data-message="Це дія 1">Дія 1</button>
+      <button class="menu-button2" data-behavior="prompt" data-prompt-message="Введіть своє ім'я:" data-greeting="Привіт">Дія 2</button>
+      <button class="menu-button2" data-behavior="input" data-input-message="Введіть число:" data-output-prefix="Квадрат числа">Дія 3</button>
+  </div>
+
+  <script>
+  // Функція для обробки кліків на кнопках меню
+  function handleMenuClick2(event) {
+      // Отримуємо батьківський елемент кнопки, на яку клікнули
+      const button = event.target.closest('.menu-button2');
+      // Перевіряємо чи кнопка має клас .menu-button2
+      if (!button) return;
+      // Отримуємо data-* атрибути кнопки
+      const behavior = button.dataset.behavior;
+      // Обробляємо клік в залежності від значення data-behavior
+      if (behavior === "alert") {
+          const alertMessage = button.dataset.message;
+          alert(alertMessage);
+      } else if (behavior === "prompt") {
+          const promptMessage = button.dataset.promptMessage;
+          const greeting = button.dataset.greeting;
+          const name = prompt(promptMessage);
+          if (name !== null) {
+              alert(`${greeting}, ${name}!`);
+          }
+      } else if (behavior === "input") {
+          const inputMessage = button.dataset.inputMessage;
+          const outputPrefix = button.dataset.outputPrefix;
+          const number = parseInt(prompt(inputMessage));
+          if (!isNaN(number)) {
+              alert(`${outputPrefix} ${number * number}`);
+          } else {
+              alert("Ви ввели некоректне число!");
+          }
+      } else {
+          console.log("Невідома поведінка");
+      }
+  }
+  // Додаємо обробник кліку на меню, щоб він реагував на всі кліки всередині #menu2
+  document.getElementById('menu2').addEventListener('click', handleMenuClick2);
+  </script>
+
+
 <h1>Приклад роботи з методами document та node</h1>
 <a href="index.html">Назад до головної сторінки</a>
 
@@ -31,8 +140,39 @@
 <button onclick="addAfterHeading()">Додати елемент після заголовка за допомогою node.after</button>
 <button onclick="replaceHeading()">Замінити заголовок за допомогою node.replaceWith</button>
 <button onclick="removeButton()">Видалити кнопку за допомогою node.remove</button>
-
+<button id="my">Натисни мене</button>
+<button id="myB">Видалення</button>
 <script>
+// Функція, яка виконується при кліку на кнопку
+function myF() {
+    console.log('Клік відбувся!');
+    // Отримуємо кнопку
+    var button = document.getElementById('myB');
+    // Видаляємо кнопку з DOM
+    button.parentNode.removeChild(button);
+    console.log('Кнопку видалено!');
+}
+// Отримуємо кнопку
+var button = document.getElementById('myB');
+// Додаємо подію "click" до кнопки
+button.addEventListener('click', myF);
+
+
+// Об'єкт, який містить метод для обробки подій
+let eventH = {
+  // Метод обробки подій
+  handleEvent: function(event) {
+    // Виводимо повідомлення у консоль з поточним елементом, який викликав подію
+    console.log("Спрацював обробник на елементі:", event.currentTarget);
+  }
+};
+// Отримуємо елемент з ідентифікатором "my" у документі
+let my = document.getElementById('my');
+// Додаємо прослуховувач подій "click" на елемент my
+// При кліку на цей елемент буде викликано метод handleEvent об'єкта eventH
+my.addEventListener('click', eventH);
+
+
   // document.write
   function writeMessage() {
     document.write("<p>Цей абзац виведено за допомогою document.write</p>");
