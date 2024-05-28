@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перетягування елемента</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .drag {
+            width: 150px;
+            height: 150px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="drag" id="drag">Перетягни мене</div>
+    <script>
+        const drag = document.getElementById('drag');
+        //Стан перетягування
+        let isDragging = false;
+        //Початкові координати
+        let offsetX = 0;
+        let offsetY = 0;
+        drag.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - drag.getBoundingClientRect().left;
+            offsetY = e.clientY - drag.getBoundingClientRect().top;
+            drag.style.cursor = 'grabbing';
+        });
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+              //Елемент пересувається відповідно до поточного положення курсору.
+                drag.style.left = `${e.clientX - offsetX}px`;
+                drag.style.top = `${e.clientY - offsetY}px`;
+            }
+        });
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            drag.style.cursor = 'grab';
+        });
+    </script>
+</body>
+</html>

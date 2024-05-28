@@ -18,7 +18,12 @@
         max-height: 100%;
         width: 350px;
         height: 200px;
+        transition: transform 0.3s, opacity 0.3s;
       }
+      .cart.hovered {
+       transform: scale(0.95);
+      opacity: 0.9;
+     }
       .tc span{
         color: #006400;
       }
@@ -42,6 +47,55 @@
         background-color: white;
       }
     </style>
+    <script>
+    //Обробник події, що виконається після завантаження всього вмісту сторінки
+     document.addEventListener("DOMContentLoaded", () => {
+       const table = document.querySelector("table");
+       //Обробник події mouseout до таблиці
+       table.addEventListener("mouseout", (event) => {
+         const target = event.target;
+         const relatedTarget = event.relatedTarget;
+         //Перевірка виходу мишки з елемента td
+         //чи новий елемент в межах таблиці
+         if (target.tagName === "TD" && (!relatedTarget || !table.contains(relatedTarget))) {
+           target.style.backgroundColor = "#f0e68c";
+         }
+       });
+       //Обробник події mouseover до таблиці
+       table.addEventListener("mouseover", (event) => {
+         const target = event.target;
+         //Чи мишка знаходиться над елементом td
+         if (target.tagName === "TD") {
+           target.style.backgroundColor = "";
+         }
+       });
+     });
+
+
+     document.addEventListener("DOMContentLoaded", () => {
+      //Всі елементи з класом cart
+      const images = document.querySelectorAll(".cart");
+      //Лічильник
+      let moveCount = 0;
+      //Елемент для відображення лічильника
+      const counter = document.createElement("div");
+      counter.className = "counter";
+      counter.textContent = `Рухів мишею: ${moveCount}`;
+      document.body.appendChild(counter);
+      //Обробник події mousemove до кожного зображення
+      images.forEach((img) => {
+      img.addEventListener("mousemove", () => {
+      img.classList.add("hovered"); //Клас для зменшення розміру та прозорості
+      moveCount++;
+      counter.textContent = `Рухів мишею: ${moveCount}`; //Оновлення
+      });
+        //Обробник події mouseout до кожного зображення
+        img.addEventListener("mouseout", () => {
+          img.classList.remove("hovered");
+        });
+      });
+    });
+   </script>
   </head>
   <body id="body">
 <a href="index.html">Назад до головної сторінки</a>
